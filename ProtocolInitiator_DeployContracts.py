@@ -2,7 +2,7 @@ import argparse
 import os
 import pickle
 #change all address
-# python3 ProtocolInitiator_DeployContracts.py --params-address 0x5821cf75FA4907D020feE0614af796e01c5a9C6b --request-address 0xeD2207ff1147e10eebd22d7B8b718178D2aa7eD5 --issue-address 0x4b3b9558EdaFc1fBb60C9418952fa1eda4C33483 --opening-address 0xc22e42015915a88048c3F66c69bc60a4fF1DAd30
+# python3 ProtocolInitiator_DeployContracts.py --params-address 0xBC15B02Fde1E6332B0227c21dCFd7B9b037F31A8 --request-address 0x37b495514722a93Dcef556b1E4ea0E25e88Ad5fF --issue-address 0xb2Fd49A4eB882a8b5D292EE3eb9a8aA5f71cB2a2 --opening-address 0x69616c96D5F15f1270DeaE8ec07D49A406457cfD
 
 
 parser = argparse.ArgumentParser(description="Smart Contracts Deployment")
@@ -15,7 +15,7 @@ parser.add_argument("--opening-address", type=str, default = None, required = Tr
 args = parser.parse_args()
 
 mode = 0o777
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 try:
 	os.mkdir(root_dir, mode = mode)
 except FileExistsError as e:

@@ -22,7 +22,7 @@ parser.add_argument('--dependency', nargs='+', help='The Vcerts on which the Ano
 args = parser.parse_args()
 
 mode = 0o777
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 register_path = os.path.join(root_dir, "ac_register.pickle")
 # ip_map = os.path.join(root_dir, "ac_ip_map.pickle")

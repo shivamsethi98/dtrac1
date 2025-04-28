@@ -25,7 +25,7 @@ parser.add_argument("--rpc-endpoint", type=str, default = None, required = True,
 args = parser.parse_args()
 
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 # validator_address = hex(int(args.address, base = 16))
 validator_address = args.address
@@ -237,25 +237,25 @@ issue_address = getIssueAddress()
 # w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout=60))
 w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint, request_kwargs = {'timeout' : 300}))
 
-# ------------------------------ ------------------------------------------
+# ------------------------------------------------------------------------
 # Params.sol
 
 tf = json.load(open('./build/contracts/Params.json'))
-params_address = Web3.toChecksumAddress(params_address)
+params_address = Web3.to_checksum_address(params_address)
 params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
 # Request.sol
 
 tf = json.load(open('./build/contracts/Request.json'))
-request_address = Web3.toChecksumAddress(request_address)
+request_address = Web3.to_checksum_address(request_address)
 request_contract = w3.eth.contract(address = request_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
 # Issue.sol
 
 tf = json.load(open('./build/contracts/Issue.json'))
-issue_address = Web3.toChecksumAddress(issue_address)
+issue_address = Web3.to_checksum_address(issue_address)
 issue_contract = w3.eth.contract(address = issue_address, abi = tf['abi'])
 
 # -------------------------------------------------------------------------
@@ -268,7 +268,7 @@ wait_initially.clear()
 
 def listen_to_requests():#Where code waits for emit event
 	wait_initially.wait()
-	request_filter = request_contract.events.emitRequest.createFilter(fromBlock="0x0", toBlock='latest')
+	request_filter = request_contract.events.emitRequest.create_filter(from_block="0x0", to_block='latest')
 	credential_id = params_contract.functions.getMapCredentials(args.title).call()
 	assert credential_id != 0, "No such AC."
 	while True:

@@ -25,7 +25,7 @@ from py_ecc_tester import *
 # args = parser.parse_args()
 
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 # validator_address = hex(int(args.address, base = 16))
 #validator_address = args.address
@@ -237,7 +237,7 @@ issue_address = getIssueAddress()
 # w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout=60))
 w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint, request_kwargs = {'timeout' : 300}))
 
-# ------------------------------ ------------------------------------------
+# ------------------------------------------------------------------------
 # Params.sol
 
 tf = json.load(open('./build/contracts/Params.json'))

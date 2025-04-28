@@ -24,7 +24,7 @@ parser.add_argument('--accepts', nargs='+', help='The ACs on which the service d
 
 args = parser.parse_args()
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 SP_addr = args.address
 # w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout = 60))
@@ -114,7 +114,7 @@ params_address = getParamsAddress()
 # All the TTP system parameters and Aggregated Validators Key
 
 tf = json.load(open('./build/contracts/Params.json'))
-params_address = Web3.toChecksumAddress(params_address)
+params_address = Web3.to_checksum_address(params_address)
 params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -124,7 +124,7 @@ params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 # verifies the AC with selective disclosure of attributes.
 
 tf = json.load(open('./build/contracts/Verify.json'))
-verify_address = Web3.toChecksumAddress(verify_address)
+verify_address = Web3.to_checksum_address(verify_address)
 verify_contract = w3.eth.contract(address = verify_address, abi = tf['abi'])
 
 # -------------------------------------------------------------------------
@@ -172,7 +172,7 @@ for cur_title in acceptable_ACs:
 			break
 
 	tx_hash = verify_contract.functions.setPolicy(cur_title, policy).transact({'from':SP_addr})
-	w3.eth.waitForTransactionReceipt(tx_hash)
+	w3.eth.wait_for_transaction_receipt(tx_hash)
 
 pending_service_requests = []
 pending_requests_lock = threading.Lock()
@@ -180,7 +180,7 @@ served_count = 0
 served_service_requests = []
 
 def listen_to_service_requests():
-	verify_filter = verify_contract.events.emitVerify.createFilter(fromBlock="0x0", toBlock='latest')
+	verify_filter = verify_contract.events.emitVerify.create_filter(from_block="0x0", to_block='latest')
 	while True:
 		service_log = verify_filter.get_new_entries()
 		for i in range(len(service_log)):

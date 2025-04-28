@@ -28,7 +28,8 @@ parser.add_argument("--rpc-endpoint", type=str, default = None, required = True,
 args = parser.parse_args()
 
 mode = 0o777
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
+
 
 msk = genRandom()
 user_addr = args.address
@@ -430,12 +431,12 @@ request_address = getRequestAddress()
 issue_address = getIssueAddress()
 verify_address = getVerifyAddress()
 
-# ------------------------------ ------------------------------------------
+# ------------------------------------------------------------------------
 # Params.sol
 # All the TTP system parameters and Aggregated Validators Key
 
 tf = json.load(open('./build/contracts/Params.json'))
-params_address = Web3.toChecksumAddress(params_address)
+params_address = Web3.to_checksum_address(params_address)
 params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -443,7 +444,7 @@ params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 # Contains verify_pi_o function which validates the user request for anonymous credential
 
 tf = json.load(open('./build/contracts/Request.json'))
-request_address = Web3.toChecksumAddress(request_address)
+request_address = Web3.to_checksum_address(request_address)
 request_contract = w3.eth.contract(address = request_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -451,7 +452,7 @@ request_contract = w3.eth.contract(address = request_address, abi = tf['abi'])
 # stores information required for issuance of AC.
 
 tf = json.load(open('./build/contracts/Issue.json'))
-issue_address = Web3.toChecksumAddress(issue_address)
+issue_address = Web3.to_checksum_address(issue_address)
 issue_contract = w3.eth.contract(address = issue_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -459,7 +460,7 @@ issue_contract = w3.eth.contract(address = issue_address, abi = tf['abi'])
 # verifies the AC with selective disclosure of attributes.
 
 tf = json.load(open('./build/contracts/Verify.json'))
-verify_address = Web3.toChecksumAddress(verify_address)
+verify_address = Web3.to_checksum_address(verify_address)
 verify_contract = w3.eth.contract(address = verify_address, abi = tf['abi'])
 
 # --------------------------------------------------------------------------
@@ -717,7 +718,7 @@ credential = {"title": ac_title, "attributes" : attributes, "credential": None}
 nv = getTotalValidators(ac_title)
 signs = [None] * nv
 tv = getThresholdValidators(ac_title)
-issue_filter = issue_contract.events.emitIssue.createFilter(fromBlock="0x0", toBlock='latest')
+issue_filter = issue_contract.events.emitIssue.create_filter(from_block="0x0", to_block='latest')
 
 print("Credential Request is about to happen")
 start = time.time()

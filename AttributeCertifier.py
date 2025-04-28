@@ -27,7 +27,7 @@ parser.add_argument('--dependency', nargs='+', help='The Vcerts on which the cur
 args = parser.parse_args()
 
 mode = 0o777
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 try:
 	os.mkdir(root_dir, mode = mode)

@@ -11,7 +11,7 @@ from py_ecc_tester import *
 #only change Verify address as in deployed address
 # python3 SP.py --title 'Loan Service' --name Bank --address 0xB1A0d85CFeA6ce282729adb7e66CD69f57DC3245 --verify-address 0xBE931E940E2E86c310f7ba619b10006B0089E05D --rpc-endpoint "http://127.0.0.1:7545" --accepts 'Loan Credential'
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 #w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout = 60))
 #w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint, request_kwargs = {'timeout' : 300}))

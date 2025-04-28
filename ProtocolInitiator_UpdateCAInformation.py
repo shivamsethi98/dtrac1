@@ -23,7 +23,7 @@ parser.add_argument("--rpc-endpoint", type=str, default = None, required = True,
 args = parser.parse_args()
 
 mode = 0o777
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 try:
 	os.mkdir(root_dir, mode = mode)
@@ -67,8 +67,8 @@ for title in args.titles:
 	w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint))
 		
 	tf = json.load(open('./build/contracts/Params.json'))
-	params_address = Web3.toChecksumAddress(params_address)
+	params_address = Web3.to_checksum_address(params_address)
 	params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 		
 	tx_hash = params_contract.functions.set_ttp_params(title, encoded_pk, encoded_hs).transact({'from': args.address})
-	w3.eth.waitForTransactionReceipt(tx_hash)
+	w3.eth.wait_for_transaction_receipt(tx_hash)

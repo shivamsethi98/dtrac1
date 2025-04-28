@@ -969,7 +969,7 @@
   "sourceMap": "65:724:1:-:0;;;251:43;;;;;;;;;-1:-1:-1;271:5:1;:18;;-1:-1:-1;;;;;;271:18:1;279:10;271:18;;;65:724;;;;;;",
   "deployedSourceMap": "65:724:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;622:165;;;;;;:::i;:::-;;:::i;:::-;;210:36;;;;;;;;;451:25:8;;;439:2;424:18;210:36:1;;;;;;;;89:20;;;;;-1:-1:-1;;;;;89:20:1;;;;;;-1:-1:-1;;;;;651:32:8;;;633:51;;621:2;606:18;89:20:1;487:203:8;515:103:1;;;;;;:::i;:::-;;:::i;622:165::-;355:5;;-1:-1:-1;;;;;355:5:1;341:10;:19;326:101;;;;-1:-1:-1;;;326:101:1;;;;;;;:::i;:::-;;;;;;;;;757:24:::1;::::0;735:47:::1;::::0;-1:-1:-1;;;735:47:1;;717:11;;-1:-1:-1;;;;;735:21:1;::::1;::::0;::::1;::::0;:47:::1;::::0;::::1;;451:25:8::0;;;439:2;424:18;;305:177;735:47:1::1;;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;678:109;622:165:::0;:::o;515:103::-;355:5;;-1:-1:-1;;;;;355:5:1;341:10;:19;326:101;;;;-1:-1:-1;;;326:101:1;;;;;;;:::i;:::-;577:24:::1;:36:::0;515:103::o;14:286:8:-;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;168:23;;-1:-1:-1;;;;;220:31:8;;210:42;;200:70;;266:1;263;256:12;200:70;289:5;14:286;-1:-1:-1;;;14:286:8:o;695:180::-;754:6;807:2;795:9;786:7;782:23;778:32;775:52;;;823:1;820;813:12;775:52;-1:-1:-1;846:23:8;;695:180;-1:-1:-1;695:180:8:o;880:415::-;1082:2;1064:21;;;1121:2;1101:18;;;1094:30;1160:34;1155:2;1140:18;;1133:62;-1:-1:-1;;;1226:2:8;1211:18;;1204:49;1285:3;1270:19;;880:415::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.7.0 <0.9.0;\n\ncontract Migrations {\n  address public owner;\n\n  // A function with the signature `last_completed_migration()`, returning a uint, is required.\n  uint public last_completed_migration;\n\n  constructor() {\n    owner = msg.sender;\n  }\n\n  modifier restricted() {\n    require(\n      msg.sender == owner,\n      \"This function is restricted to the contract's owner\"\n    );\n    _;\n  }\n\n \n\n  // A function with the signature `setCompleted(uint)` is required.\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n\n  function upgrade(address new_address) public restricted {\n    Migrations upgraded = Migrations(new_address);\n    upgraded.setCompleted(last_completed_migration);\n  }\n}",
-  "sourcePath": "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/contracts/Migrations.sol",
+  "sourcePath": "/home/quanta/IITH/cs5180/petition-dtrac/contracts/Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -1682,12 +1682,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x75CDFB3420a43CC779742aaad0974838F2E8589f",
-      "transactionHash": "0x24968160c750ea5667c265c234c6b4ecff0adea0322def05811e518d4b1d8438"
+      "address": "0xc9FF677E1c7A79D104d26674d8C1cF3B61F35226",
+      "transactionHash": "0x704aeb20b503406fffacf2d96c760e3f18c640fff83ee717a8360731c5fc6679"
     }
   },
-  "schemaVersion": "3.4.7",
-  "updatedAt": "2022-10-20T12:49:14.516Z",
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-04-28T17:37:08.958Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

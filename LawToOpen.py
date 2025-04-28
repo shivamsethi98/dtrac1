@@ -14,7 +14,7 @@ parser.add_argument("--title", type=str, default = None, required = True, help= 
 parser.add_argument("--rpc-endpoint", type=str, default = None, required = True,  help= "The node rpc endpoint through which a opener is connected to blockchain network.")
 args = parser.parse_args()
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 def getTotalOpeners(title):
 	ac_path = os.path.join(root_dir, title)
@@ -43,7 +43,7 @@ params_address = getParamsAddress()
 # w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout=100))
 w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint, request_kwargs = {'timeout' : 300}))
 
-# ------------------------------ ------------------------------------------
+# ------------------------------------------------------------------------
 # Params.sol
 # All the TTP system parameters and Aggregated Validators Key
 

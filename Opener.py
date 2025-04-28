@@ -31,7 +31,7 @@ parser.add_argument("--address", type=str, default = None, required = True,  hel
 parser.add_argument("--rpc-endpoint", type=str, default = None, required = True,  help= "The node rpc endpoint through which a opener is connected to blockchain network.")
 args = parser.parse_args()
 
-root_dir = "/media/user/New Volume/IITH/Thesis/Pavan DTRAC/ModifierVersionGanache-20220827T104628Z-001/ModifierVersionGanache/ROOT"
+root_dir = os.path.join(os.getcwd(), "ROOT")
 
 ac_path = os.path.join(root_dir, args.title)
 ac_file_path = os.path.join(ac_path, "openersList.pickle")
@@ -265,12 +265,12 @@ opening_address = getOpeningAddress()
 # w3 = Web3(Web3.WebsocketProvider(args.rpc_endpoint, websocket_timeout=100))
 w3 = Web3(Web3.HTTPProvider(args.rpc_endpoint, request_kwargs = {'timeout' : 300}))
 
-# ------------------------------ ------------------------------------------
+# ------------------------------------------------------------------------
 # Params.sol
 # All the TTP system parameters and Aggregated Validators Key
 
 tf = json.load(open('./build/contracts/Params.json'))
-params_address = Web3.toChecksumAddress(params_address)
+params_address = Web3.to_checksum_address(params_address)
 params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -278,7 +278,7 @@ params_contract = w3.eth.contract(address = params_address, abi = tf['abi'])
 # Contains verify_pi_o function which validates the user request for anonymous credential
 
 tf = json.load(open('./build/contracts/Request.json'))
-request_address = Web3.toChecksumAddress(request_address)
+request_address = Web3.to_checksum_address(request_address)
 request_contract = w3.eth.contract(address = request_address, abi = tf['abi'])
 
 # ------------------------------------------------------------------------
@@ -286,7 +286,7 @@ request_contract = w3.eth.contract(address = request_address, abi = tf['abi'])
 # broadcasts the information during the opening protocol.
 
 tf = json.load(open('./build/contracts/Opening.json'))
-opening_address = Web3.toChecksumAddress(opening_address)
+opening_address = Web3.to_checksum_address(opening_address)
 opening_contract = w3.eth.contract(address = opening_address, abi = tf['abi'])
 
 # -------------------------------------------------------------------------
@@ -299,7 +299,7 @@ wait_initially.clear()
 
 def listen_to_requests():#listening to emit events
 	wait_initially.wait()
-	request_filter = request_contract.events.emitRequest.createFilter(fromBlock="0x0", toBlock='latest')
+	request_filter = request_contract.events.emitRequest.create_filter(from_block="0x0", to_block='latest')
 	credential_id = params_contract.functions.getMapCredentials(args.title).call()
 	assert credential_id != 0, "No such AC."
 	while True:
@@ -406,7 +406,7 @@ def getCAIpPort(title):
 def openingThread():
 	credential_id = params_contract.functions.getMapCredentials(args.title).call()
 	assert credential_id != 0, "No such AC."
-	opening_filter = opening_contract.events.emitOpening.createFilter(fromBlock="0x0", toBlock='latest')
+	opening_filter = opening_contract.events.emitOpening.create_filter(from_block="0x0", to_block='latest')
 	aggregate_vk = getAggregateVerificationKey(args.title)
 	openersList = getOpenersList(args.title)
 	opener_dict = {}
