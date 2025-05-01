@@ -9,8 +9,8 @@ import threading
 from py_ecc_tester import *
 
 #only change Verify address as in deployed address
-# python3 SP.py --title 'Loan Service' --name Bank --address 0xB1A0d85CFeA6ce282729adb7e66CD69f57DC3245 --verify-address 0xBE931E940E2E86c310f7ba619b10006B0089E05D --rpc-endpoint "http://127.0.0.1:7545" --accepts 'Loan Credential'
-
+# python3 SP.py --title 'Loan Service' --name Bank --address 0xB1A0d85CFeA6ce282729adb7e66CD69f57DC3245 --verify-address 0xE82931d9Abb8711F4E760f7d43A216F591204bB4 --rpc-endpoint "http://127.0.0.1:7545" --accepts 'Loan Credential'
+ 
 
 parser = argparse.ArgumentParser(description="Anonymous Credential Usage")
 parser.add_argument("--title", type=str, default = None, required = True, help= "This is the title of the Service.")

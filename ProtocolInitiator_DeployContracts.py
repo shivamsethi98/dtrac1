@@ -2,7 +2,7 @@ import argparse
 import os
 import pickle
 #change all address
-# python3 ProtocolInitiator_DeployContracts.py --params-address 0xBC15B02Fde1E6332B0227c21dCFd7B9b037F31A8 --request-address 0x37b495514722a93Dcef556b1E4ea0E25e88Ad5fF --issue-address 0xb2Fd49A4eB882a8b5D292EE3eb9a8aA5f71cB2a2 --opening-address 0x69616c96D5F15f1270DeaE8ec07D49A406457cfD
+# python3 ProtocolInitiator_DeployContracts.py --params-address 0xCdf08c88CB97E29AaC333f5580268e209b9AF08F --request-address 0x583a474d6510baBd30ac81956faa3874eB980322 --issue-address 0xD44B28a43A618b82367dD386C7A66c2791c5d4b7 --opening-address 0xdAF312EFb4d5cbf64c61C46e258C79c8F0DFa332
 
 
 parser = argparse.ArgumentParser(description="Smart Contracts Deployment")
