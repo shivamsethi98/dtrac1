@@ -18820,12 +18820,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x9073fa56ADc8d678686059707aD7CC8Cd0500AD0",
-      "transactionHash": "0xf9ee3770b305fa97f6e8ccd1794ca6da854cdcff918a38cd19a574982af28e6d"
+      "address": "0x4b3b9558EdaFc1fBb60C9418952fa1eda4C33483",
+      "transactionHash": "0xb438fca7307a642b1e211996567516c41c973a8c076a55efdc54bccd6a2ebde8"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-28T17:37:08.854Z",
+  "updatedAt": "2025-06-12T10:16:51.812Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

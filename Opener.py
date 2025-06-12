@@ -435,7 +435,7 @@ def openingThread():
 			send_open_shares.append(pairing_values)
 
 		tx_hash = opening_contract.functions.SendOpeningInfo(args.title, opening_session_id, send_open_shares).transact({'from': args.address})
-		# opener_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+		# opener_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
 		Reg = opening_event_filter(opening_filter, opener_dict, credential_id)
 
