@@ -462,15 +462,15 @@ for key in schemaOrder:
 
 
 tx_hash = params_contract.functions.set_params(args.title, encoded_hs, encoded_alpha, encoded_g1_beta, encoded_beta, encoded_opk, combinations, dependency, encoded_include_indexes, public_m_encoding).transact({'from': organization_address})
-w3.eth.waitForTransactionReceipt(tx_hash)
+w3.eth.wait_for_transaction_receipt(tx_hash)
 
 opener_addresses = args.opener_addresses
 validator_addresses = args.validator_addresses
 
 for opener_addr in opener_addresses:
 	tx_hash = opening_contract.functions.addOpener(opener_addr).transact({'from':organization_address})
-	w3.eth.waitForTransactionReceipt(tx_hash)
+	w3.eth.wait_for_transaction_receipt(tx_hash)
 
 for validator_addr in validator_addresses:
 	tx_hash = issue_contract.functions.addIssuer(validator_addr).transact({'from':organization_address})
-	w3.eth.waitForTransactionReceipt(tx_hash)
+	w3.eth.wait_for_transaction_receipt(tx_hash)
