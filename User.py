@@ -649,6 +649,14 @@ def getAttributes(title, vcerts, combination, public_m = []):
 			i += 1
 	return attributes
 
+
+
+
+
+
+
+
+
 def RequestService(credential, user_addr):
 	title = credential["title"]
 	print("The available policies are : ")
@@ -699,7 +707,33 @@ def RequestService(credential, user_addr):
 	# Aw, _timestamp, proof = proof_v
 	encoded_disclosed_attr = encode_attributes(disclose_attr, disclose_attr_enc)
 	#Sending to SP_verify for verifying the proof. 
-	SP_RequestService(credential, user_addr,disclose_index,aggr_sig,Theta,encoded_disclosed_attr,encoded_public_m,aggregate_vk)
+	aggregate_vk = getAggregateVerificationKey(title)
+
+	# proving the possession of AC (Off-chain by user) private_m, disclose_index, disclose_attr, disclose_attr_enc, public_m
+	Theta, aggr = ProveCred(params, aggregate_vk, aggr_sig, encoded_private_m, disclose_index, disclose_attr, disclose_attr_enc, encoded_public_m)
+	(kappa, nu, rand_sig, proof, Aw, _timestamp) = Theta
+	#Aw, _timestamp, proof = proof_v
+
+
+	send_kappa = ((kappa[0].coeffs[1].n, kappa[0].coeffs[0].n), (kappa[1].coeffs[1].n, kappa[1].coeffs[0].n))
+	send_nu = (nu[0].n, nu[1].n)
+	send_sigma = [(rand_sig[i][0].n, rand_sig[i][1].n) for i in range(len(rand_sig))]
+	send_theta = (send_kappa, send_nu, send_sigma, proof)
+	send_Aw =  ((Aw[0].coeffs[1].n, Aw[0].coeffs[0].n), (Aw[1].coeffs[1].n, Aw[1].coeffs[0].n))
+	if aggr:
+		send_aggr = ((aggr[0].coeffs[1].n, aggr[0].coeffs[0].n), (aggr[1].coeffs[1].n, aggr[1].coeffs[0].n))
+	else:
+		send_aggr = ((0, 0), (0, 0))
+
+	str_public_m = [str(public_m[i]) for i in range(len(public_m))]
+	encoded_disclosed_attr = encode_attributes(disclose_attr, disclose_attr_enc)
+	# tf = VerifyCred(params, aggregate_vk, Theta, disclose_index, encoded_disclosed_attr, encoded_public_m)
+	# print("Verify Cred : ")
+	# print(tf)
+	
+	tx_hash = verify_contract.functions.VerifyCred(title, send_theta, str_public_m, send_Aw, send_aggr, disclose_index, str_disclose_attr, disclose_attr_enc, _timestamp).transact({'from':user_addr})
+	print("Transaction hash for VerifyCred: ", tx_hash.hex())
+ 
 # -------------------------------------------------------------------------------------------------
 
 combination = list(map(str, input("Enter a combination you want to use for credential request (Identity Certificate,Income Certificate)").split(",")))

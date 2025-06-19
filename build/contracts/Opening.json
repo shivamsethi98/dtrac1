@@ -6791,12 +6791,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x53042c8CF2852B3BaC39ef41f848B172Cc4db700",
-      "transactionHash": "0x0b4e7498f0b3434d92057b6670c0072ddf5cd1e1aec7d9bc3529b715c2284bcc"
+      "address": "0x2E5adf0d9C0B89E537DdBd0440463F78B8A5F953",
+      "transactionHash": "0xc078960502bccaf4ac6a6a68271df912604616b0dd4921dba69f007d9d7c1aa2"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-06-12T10:16:51.902Z",
+  "updatedAt": "2025-06-19T07:07:29.008Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
