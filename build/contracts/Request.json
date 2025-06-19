@@ -62186,15 +62186,15 @@
     "5777": {
       "events": {},
       "links": {
-        "G": "0xc22e42015915a88048c3F66c69bc60a4fF1DAd30",
-        "BN256G2": "0x4b3b9558EdaFc1fBb60C9418952fa1eda4C33483"
+        "G": "0x6c702595200358B1C9fd2b5f83E4575522C1e495",
+        "BN256G2": "0x5a428d7bD2A5A1f7c0B87d543c7e9dC60AD94659"
       },
-      "address": "0x601A8ce082f0126d79551EEad2859257FAbcBD2C",
-      "transactionHash": "0xf31a530fea7f779fc9708c1f54bf76b419a44ebb489aeb7736f984febfc29ead"
+      "address": "0x6F0a446220cb33a7BFe7f026FbF50C14b68f3225",
+      "transactionHash": "0x30016340421254fdd0c8b5112c517560de78491df2e97693c26f34af7ca6d6c0"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-06-12T10:16:51.843Z",
+  "updatedAt": "2025-06-19T07:07:28.950Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

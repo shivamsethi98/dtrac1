@@ -7,4 +7,3 @@ Loan Credential
 Identity Certificate,Income Certificate
 1
 
-
